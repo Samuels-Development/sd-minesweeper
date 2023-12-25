@@ -6,13 +6,15 @@ Feel free to star the repository and check out my store and discord @ Discord: h
 For support inquires please create a post in the support-forum channel on discord or create an issue here on Github.
 
 ## Preview
-<img src="https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/6ff7425a-52ae-4c2c-90eb-6cca8dd407ab" alt="FiveM_b2944_GTAProcess_mPrXn4j0yL" style="margin-right: 20px;"/>
+<img src="https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/a4e9dc4b-a06e-4bf9-bd49-d10aaed867e3" alt="FiveM_b2944_GTAProcess_vF98r59f2y" style="margin-right: 30px;"/>
+<img src="https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/bcb95cde-fb75-4992-bea3-02368bdae5bf" alt="FiveM_b2944_GTAProcess_RzadbbyNcW"/>
 
-<img src="https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/372dbc8a-5fb4-49cb-b6b6-7640b687b2dd" alt="FiveM_b2944_GTAProcess_uOCcKChvj9"/>
 
 
 ### Video Preview
-https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/868bc145-03d4-4c25-81e9-960cd025733e
+https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/083a08ac-1c42-43b9-a2ae-6e63b4f0bfec
+
+
 
 ## Installation
 
@@ -22,8 +24,7 @@ https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/868bc145-0
 
 ## Usage
 
-### Exports
-Exports are exclusively available on the client and can't be called from server-side files.
+You'll want to run the AddPlayer export and pass through source before running the minigame.
 
 - `StartMineSweeper(title, iconClass, gridSize, startingBalance, multiplier, specialItem, timeoutDuration)`
    - `title`: Title of the minigame (e.g., "Minesweeper Challenge").
@@ -34,21 +35,23 @@ Exports are exclusively available on the client and can't be called from server-
    - `specialItem`: The item rewarded upon revealing a golden tile.
    - `timeoutDuration`: Duration (in milliseconds) before the game automatically ends.
 
-### Event Handlers
-Events can be called from client & server-side.
+Both specialItem and timeoutDuration are optional parameters. If timeoutDuration is omitted, the game will not impose any time limit to complete the objective. On the other hand, if specialItem is not specified, the golden crown tile will function as a 1.5x multiplier instead.
 
- `sd-minesweeper:client:start`: Initiates the Minesweeper game with specified parameters (maps to `StartMineSweeper`).
+## Exports 
+Exclusively avaiable on the server.
+
+ `AddPlayer`: A security function that registers a player in the Minesweeper game, safeguarding against exploiters. It links their server and in-game IDs for accurate activity tracking.
+
+### Event Handlers
+This event should only be used on the server.
+
+ `sd-minesweeper:client:start`: Initiates the Minesweeper game with specified parameters (eg. `StartMineSweeper`).
 
 ### Example Usage
-
-Utilizing Exports
 ```lua
--- Start the Minesweeper game
-exports['sd-minesweeper']:StartMineSweeper('Minesweeper Challenge', 'fa-solid fa-gem', 5, 1000, 1.2, 'diamond', 20000)
-```
+-- Add player to to server-side table.
+exports['sd-minesweeper']:AddPlayer(source)
 
-Utilizing Events
-```lua
 -- Start the Minesweeper game
 TriggerClientEvent('sd-minesweeper:client:start', source, 'Minesweeper Challenge', 'fa-solid fa-gem', 5, 1000, 1.2, 'diamond', 20000)
 ```
@@ -72,7 +75,8 @@ RegisterNetEvent('lation_247robbery:RewardRobbery', function(source, type)
                 quantity = math.random(Config.RegisterRewardMinQuantity, Config.RegisterRewardMaxQuantity)
             end
             value = quantity
-            TriggerClientEvent('sd-minesweeper:client:start', source, 'Register Balance', 'fas fa-shopping-cart', 6, quantity, 1.05, 'laptop')
+            exports['sd-minesweeper']:AddPlayer(source)
+            TriggerClientEvent('sd-minesweeper:client:start', source, 'Register Balance', 'fas fa-shopping-cart', 6, quantity, 1.05, 'laptop', 20000)
             Wait(10000)
             RegisterCooldown()
         else
