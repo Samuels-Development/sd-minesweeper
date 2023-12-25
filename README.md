@@ -47,7 +47,7 @@ You'll want to run the AddPlayer export and pass through source before running t
 Both specialItem and timeoutDuration are optional parameters. If timeoutDuration is omitted, the game will not impose any time limit to complete the objective. On the other hand, if specialItem is not specified, the golden crown tile will function as a 1.5x multiplier instead.
 
 ## Exports 
-Exclusively avaiable on the server.
+Exclusively available on the server.
 
  `AddPlayer`: A security function that registers a player in the Minesweeper game, safeguarding against exploiters. It links their server and in-game IDs for accurate activity tracking.
 
