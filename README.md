@@ -38,7 +38,7 @@ You'll want to run the AddPlayer export and pass through source before running t
 - `StartMineSweeper(title, iconClass, gridSize, startingBalance, multiplier, specialItem, timeoutDuration)`
    - `title`: Title of the minigame (e.g., "Minesweeper Challenge").
    - `iconClass`: CSS class for the icons used in the game grid (e.g., "fa-solid fa-gem").
-   - `gridSize`: Size of the game grid (e.g., `5` for a 5x5 grid).
+   - `gridSize`: Size of the game grid (e.g., `5` for a 5x5 grid). (The minimum is 3 and the maximum is 8)
    - `startingBalance`: The initial balance or score at the start of the game.
    - `multiplier`: The multiplier applied to the balance upon uncovering a safe tile.
    - `specialItem`: The item rewarded upon revealing a golden tile.
