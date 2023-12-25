@@ -16,8 +16,8 @@ local function StartMineSweeper(title, iconClass, gridSize, startingBalance, mul
 end
 
 -- Create an event for use on server-side
-RegisterNetEvent('sd-minesweeper:client:start', function(title, iconClass, gridSize, startingBalance, multiplier, specialItem)
-    StartMineSweeper(title, iconClass, gridSize, startingBalance, multiplier, specialItem)
+RegisterNetEvent('sd-minesweeper:client:start', function(title, iconClass, gridSize, startingBalance, multiplier, specialItem, timeoutDuration)
+    StartMineSweeper(title, iconClass, gridSize, startingBalance, multiplier, specialItem, timeoutDuration)
 end)
 
 -- NUI Callback when finishing the game
