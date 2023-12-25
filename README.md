@@ -12,7 +12,10 @@ For support inquires please create a post in the support-forum channel on discor
 
 
 ### Video Preview
-https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/083a08ac-1c42-43b9-a2ae-6e63b4f0bfec
+
+https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/8da0801f-229f-4bd0-ae68-dfe43eafdc61
+
+
 
 
 
