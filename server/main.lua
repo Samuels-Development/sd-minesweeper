@@ -85,19 +85,18 @@ local RemovePlayer = function(playerId)
     end
 end
 
-RegisterCallback('sd-minesweeper:server:addPlayerCallback', function(source, cb)
-	local added = false local src = source local identifier = GetIdentifier(source)
-    players[#players+1] = { id = src, citizenid = identifier } added = true
-    cb(added)
-end)
+-- AddPlayer: Add a player to the players table
+local AddPlayer = function(id)
+    local identifier = GetIdentifier(id)
+    players[#players+1] = { id = id, citizenid = identifier }
+end
 
-RegisterNetEvent('sd-minesweeper:server:removePlayer', function(source)
-    RemovePlayer(source)
-end)
+-- Export the AddPlayer function
+exports('AddPlayer', AddPlayer)
 
 RegisterNetEvent('sd-minesweeper:server:dostuff', function(data)
     local src = source
-    if not IsPlayer(src) then return end
+    if not IsPlayer(src) then print("Player with the ID: " .. src .. " and identifier " .. GetIdentifier(src) .. " tried to run the money event without being in the players table") return end
 
     if data.goldenBox then AddItem(src, data.specialItem, 1) end
 

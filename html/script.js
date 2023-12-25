@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let mines;
   let bombClicked = false;
   let countdownInterval;
+  let safeClickCount = 0;
 
   window.addEventListener('message', function(event) {
     var data = event.data;
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function resetGame() {
     currentCashValue = initialCashValue = 0;
     cashMultiplier = 1.12;
+    safeClickCount = 0;
   
     gameArea.innerHTML = '';
     updateCashDisplay();
@@ -111,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const goldenIndex = Math.floor(Math.random() * rowCount * colCount);
+    mines.delete(goldenIndex);
 
     for (let i = 0; i < rowCount * colCount; i++) {
         const cell = document.createElement('div');
@@ -129,22 +132,23 @@ document.addEventListener('DOMContentLoaded', () => {
   function cellClick() {
     this.innerHTML = '';
     const index = parseInt(this.dataset.index);
-  
+
     if (this.classList.contains('golden')) {
-      this.innerHTML = '<i class="fas fa-crown"></i>';
-      this.classList.add('revealed', 'golden-revealed');
+        this.innerHTML = '<i class="fas fa-crown"></i>';
+        this.classList.add('revealed', 'golden-revealed');
     } else if (mines.has(index)) {
-      bombClicked = true; 
-      this.innerHTML = '<i class="fas fa-bomb"></i>';
-      this.classList.add('revealed', 'mine');
-      gameOver();
+        bombClicked = true; 
+        this.innerHTML = '<i class="fas fa-bomb"></i>';
+        this.classList.add('revealed', 'mine');
+        gameOver();
     } else {
-      this.innerHTML = '<i class="fas fa-check"></i>';
-      this.classList.add('revealed', 'safe');
-      currentCashValue = Math.floor(currentCashValue * cashMultiplier);
-      updateCashDisplay();
+        this.innerHTML = '<i class="fas fa-check"></i>';
+        this.classList.add('revealed', 'safe');
+        safeClickCount++;
+        currentCashValue = Math.floor(initialCashValue * Math.pow(cashMultiplier, safeClickCount));
+        updateCashDisplay();
     }
-  }
+}
 
   function gameOver() {
     const goldenRevealed = document.querySelector('.golden-revealed') != null;
@@ -182,6 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cashoutButton.style.backgroundColor = '#5B5A5A';
     cashoutButton.style.cursor = 'not-allowed';
     cashoutButton.disabled = true;
+    safeClickCount = 0;
 
     fetch('https://sd-minesweeper/gameOver', {
       method: 'POST',
