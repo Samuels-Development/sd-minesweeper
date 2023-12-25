@@ -6,7 +6,11 @@ Feel free to star the repository and check out my store and discord @ Discord: h
 For support inquires please create a post in the support-forum channel on discord or create an issue here on Github.
 
 ## Preview
-![FiveM_b2944_GTAProcess_mPrXn4j0yL](https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/6ff7425a-52ae-4c2c-90eb-6cca8dd407ab)![FiveM_b2944_GTAProcess_uOCcKChvj9](https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/372dbc8a-5fb4-49cb-b6b6-7640b687b2dd)
+![FiveM_b2944_GTAProcess_mPrXn4j0yL](https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/6ff7425a-52ae-4c2c-90eb-6cca8dd407ab)
+
+<br>
+
+![FiveM_b2944_GTAProcess_uOCcKChvj9](https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/372dbc8a-5fb4-49cb-b6b6-7640b687b2dd)
 
 
 ### Video Preview
