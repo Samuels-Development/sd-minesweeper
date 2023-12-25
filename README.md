@@ -1,10 +1,5 @@
 # sd-minesweeper
-
-<details>
-  <summary><b>Info</b></summary>
-  <p>This project is NOT completed yet and still needs to be cleaned up!</p>
-</details>
-
+### This project is NOT completed yet and still needs to be cleaned up
 This minigame is a twist on the classic 'Minesweeper', where players start with a set balance. Each safe move increases this balance, while uncovering a mine ends the game. The goal is to maximize gains without hitting any mines. A golden crown can be hit to receive a special reward item. This minigame, unlike other minigames, has it's own money adding handling/logic.
 
 Feel free to star the repository and check out my store and discord @ Discord: https://discord.gg/samueldev & Store: https://fivem.samueldev.shop 
