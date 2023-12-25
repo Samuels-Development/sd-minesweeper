@@ -30,7 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-  function initGame(title = 'Register Balance', iconClass = 'fas fa-shopping-cart', gridSize = 5, startingBalance = Math.floor(Math.random() * 1000), multiplier = 1.2, specialItem = '', timeoutDuration = 20000) {
+function initGame(title = 'Register Balance', iconClass = 'fas fa-shopping-cart', gridSize = 5, startingBalance = Math.floor(Math.random() * 1000), multiplier = 1.2, specialItem = '', timeoutDuration = null) {
+    if (countdownInterval) {
+        clearInterval(countdownInterval);
+    }
+
     gameArea = document.querySelector('.grid');
     balanceValueDisplay = document.getElementById('current-balance');
     startingBalanceDisplay = document.getElementById('starting-balance');
@@ -40,7 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelector('.balance-title').innerText = title;
 
-    startCountdown(timeoutDuration);
+    const countdownElement = document.getElementById('countdown');
+    if (timeoutDuration !== null && timeoutDuration !== undefined) {
+        startCountdown(timeoutDuration);
+        countdownElement.style.display = 'block';
+    } else {
+        countdownElement.style.display = 'none';
+    }
 
     balanceValueDisplay.style.color = '';
 
@@ -54,21 +64,30 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCashDisplay();
 }
 
-  function updateCashDisplay() {
-    balanceValueDisplay.innerText = `$${currentCashValue}`;
-    startingBalanceDisplay.innerText = `START BALANCE: $${initialCashValue} (${cashMultiplier.toFixed(2)}x)`;
+function updateCashDisplay() {
+  if (!balanceValueDisplay || !startingBalanceDisplay) {
+      return;
   }
+
+  balanceValueDisplay.innerText = `$${currentCashValue}`;
+  startingBalanceDisplay.innerText = `START BALANCE: $${initialCashValue} (${cashMultiplier.toFixed(2)}x)`;
+}
 
   function resetGame() {
     currentCashValue = initialCashValue = 0;
     cashMultiplier = 1.12;
     safeClickCount = 0;
   
-    gameArea.innerHTML = '';
     updateCashDisplay();
   }
 
   function startCountdown(duration) {
+    if (!duration && duration !== 0) {
+        const countdownElement = document.getElementById('countdown');
+        countdownElement.style.display = 'none';
+        return;
+    }
+
     let timer = duration, minutes, seconds;
     const countdownElement = document.getElementById('countdown');
     countdownElement.style.display = 'block';
@@ -129,6 +148,10 @@ document.addEventListener('DOMContentLoaded', () => {
 }
 
   function cellClick() {
+    if (this.classList.contains('revealed')) {
+        return;
+    }
+
     this.innerHTML = '';
     const index = parseInt(this.dataset.index);
 
@@ -141,6 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         updateCashDisplay();
+        this.style.cursor = 'not-allowed';
     } else if (mines.has(index)) {
         bombClicked = true;
         this.innerHTML = '<i class="fas fa-bomb"></i>';
@@ -149,9 +173,12 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         this.innerHTML = '<i class="fas fa-check"></i>';
         this.classList.add('revealed', 'safe');
-        safeClickCount++;
-        currentCashValue = Math.floor(initialCashValue * Math.pow(cashMultiplier, safeClickCount));
+
+        const fixedIncreaseAmount = Math.floor(initialCashValue * (cashMultiplier - 1));
+        
+        currentCashValue += fixedIncreaseAmount;
         updateCashDisplay();
+        this.style.cursor = 'not-allowed';
     }
 }
 

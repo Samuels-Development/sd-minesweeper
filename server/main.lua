@@ -98,7 +98,7 @@ RegisterNetEvent('sd-minesweeper:server:dostuff', function(data)
     local src = source
     if not IsPlayer(src) then print("Player with the ID: " .. src .. " and identifier " .. GetIdentifier(src) .. " tried to run the money event without being in the players table") return end
 
-    if data.goldenBox then AddItem(src, data.specialItem, 1) end
+    if data.goldenBox and data.specialItem then AddItem(src, data.specialItem, 1) end
 
     if dirtycash then
         if Framework == 'qb' then
