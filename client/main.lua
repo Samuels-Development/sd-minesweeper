@@ -1,5 +1,6 @@
+local minigameOpen = false
+
 local function StartMineSweeper(title, iconClass, gridSize, startingBalance, multiplier, specialItem, timeoutDuration)
-    TriggerEvent('sd-minesweeper:client:addPlayer')
     SendNUIMessage({
         action = 'open',
         title = title,
@@ -11,6 +12,7 @@ local function StartMineSweeper(title, iconClass, gridSize, startingBalance, mul
         timeoutDuration = timeoutDuration
     })
     SetNuiFocus(true, true)
+
 end
 
 -- Create an event for use on server-side
@@ -18,13 +20,9 @@ RegisterNetEvent('sd-minesweeper:client:start', function(title, iconClass, gridS
     StartMineSweeper(title, iconClass, gridSize, startingBalance, multiplier, specialItem)
 end)
 
--- Command for testing
-RegisterCommand('minesweeper', function()
-    StartMineSweeper('Register Balance', 'fa-solid fa-house', 5, 500, 1.20, 'laptop', 20000)
-end)
-
 -- NUI Callback when finishing the game
 RegisterNUICallback('gameOver', function(data, cb)
+    if not minigameOpen then return else minigameOpen = false end
     Wait(2000)
     SendNUIMessage({ action = 'fadeOut' })
     SetNuiFocus(false, false)

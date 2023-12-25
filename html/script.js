@@ -22,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
             gameContainer.style.opacity = 1;
         }, 50);
 
-        // Include timeoutDuration when calling initGame
         initGame(data.title, data.iconClass, data.gridSize, data.startingBalance, data.multiplier, data.specialItem, data.timeoutDuration);
     }
 
@@ -136,8 +135,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (this.classList.contains('golden')) {
         this.innerHTML = '<i class="fas fa-crown"></i>';
         this.classList.add('revealed', 'golden-revealed');
+
+        if (specialItemGlobal === '' || specialItemGlobal === null) {
+            currentCashValue = Math.floor(initialCashValue * 1.5);
+        }
+
+        updateCashDisplay();
     } else if (mines.has(index)) {
-        bombClicked = true; 
+        bombClicked = true;
         this.innerHTML = '<i class="fas fa-bomb"></i>';
         this.classList.add('revealed', 'mine');
         gameOver();
@@ -179,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (bombClicked) {
       balanceValueDisplay.style.color = 'red';
-      currentCashValue = initialCashValue;  // Set cash value to initial value if bomb is clicked
+      currentCashValue = initialCashValue;
     }
 
     const cashoutButton = document.getElementById('cashout');
