@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minesweeper Game</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div id="game-container"> 
+  <div class="balance-display">
+    <div class="balance-title">Register Balance</div>
+    <div class="balance-value" id="current-balance">$0</div>
+    <div class="starting-balance" id="starting-balance">START BALANCE: $0 (1.00x)</div>
+    <div id="countdown" style="display: none; position: absolute; top: 10px; right: 10px;">00:00</div>
+  </div>
+
+  <div id="game">
+    <div class="grid">
+    </div>
+    <button id="cashout">Cashout</button>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

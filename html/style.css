@@ -1,0 +1,114 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  color: white;
+  font-family: 'Roboto', sans-serif; 
+}
+
+#game-container {
+  background-color: #1d2429;
+  border-radius: 10px; 
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.4); 
+  padding: 20px;
+  opacity: 0; 
+  transition: opacity 2s; 
+  position: relative;
+  width: fit-content;
+  margin: auto;
+}
+
+#game {
+  background-color: transparent; 
+  padding: 0;
+  width: 100%; 
+}
+
+#countdown {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.balance-display {
+  text-align: center;
+  border-bottom: 2px solid #555; 
+  padding-bottom: 10px;
+  margin-bottom: 20px; 
+}
+
+.balance-title {
+  font-size: 20px;
+  margin: 0;
+}
+
+.balance-value {
+  font-size: 26px;
+  color: #24aba9; 
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.starting-balance {
+  font-size: 16px;
+  color: #aaa; 
+  margin: 5px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 60px); 
+  grid-gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.cell {
+  width: 60px;
+  height: 60px;
+  background-color: #30537d;
+  border: 1px solid #555;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+}
+
+.cell.revealed.safe {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.cell.revealed.mine {
+  background-color: #f44336;
+  color: white;
+}
+
+.cell.revealed.golden {
+  background-color: gold;
+  color: white;
+}
+
+#cashout {
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  background-color: #08a8aa;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  align-self: center;
+  margin-top: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#cashout:hover {
+  background-color: #0099cc;
+}
