@@ -12,7 +12,7 @@ local function StartMineSweeper(title, iconClass, gridSize, startingBalance, mul
         timeoutDuration = timeoutDuration
     })
     SetNuiFocus(true, true)
-
+    minigameOpen = true 
 end
 
 -- Create an event for use on server-side
