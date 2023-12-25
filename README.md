@@ -25,6 +25,9 @@ https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/8da0801f-2
 2. Place it in the server's resource directory.
 3. Add the resource to your server config, if needed.
 
+### Configuration
+There's a couple variables in the server/main.lua that can be easily adjusted and are neatly commented.
+
 ## Usage
 
 You'll want to run the AddPlayer export and pass through source before running the minigame.
