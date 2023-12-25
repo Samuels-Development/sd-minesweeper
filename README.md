@@ -1,4 +1,9 @@
-# sd-objective
+# sd-minesweeper
+
+<details>
+  <summary><b>Info</b></summary>
+  <p>This project is NOT completed yet and still needs to be cleaned up!</p>
+</details>
 
 This minigame is a twist on the classic 'Minesweeper', where players start with a set balance. Each safe move increases this balance, while uncovering a mine ends the game. The goal is to maximize gains without hitting any mines. A golden crown can be hit to receive a special reward item. This minigame, unlike other minigames, has it's own money adding handling/logic.
 
@@ -6,7 +11,7 @@ Feel free to star the repository and check out my store and discord @ Discord: h
 For support inquires please create a post in the support-forum channel on discord or create an issue here on Github.
 
 ## Preview
-<img src="https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/6ff7425a-52ae-4c2c-90eb-6cca8dd407ab" alt="FiveM_b2944_GTAProcess_mPrXn4j0yL" style="margin-right: 10px;"/>
+<img src="https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/6ff7425a-52ae-4c2c-90eb-6cca8dd407ab" alt="FiveM_b2944_GTAProcess_mPrXn4j0yL" style="margin-right: 20px;"/>
 
 <img src="https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/372dbc8a-5fb4-49cb-b6b6-7640b687b2dd" alt="FiveM_b2944_GTAProcess_uOCcKChvj9"/>
 
