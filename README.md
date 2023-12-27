@@ -26,7 +26,7 @@ https://github.com/Samuels-Development/sd-minesweeper/assets/99494967/8da0801f-2
 3. Add the resource to your server config, if needed.
 
 ### Configuration
-There's a couple variables in the server/main.lua that can be easily adjusted and are neatly commented.
+There's a couple neatly commented configs available in the sv_config.lua file.
 
 ### Disclaimer
 This minigame features it's own money handling and logic, distinct from other minigames. Therefore, remove any existing money management code from scripts where this minigame is integrated, as demonstrated in the contextual example below.
