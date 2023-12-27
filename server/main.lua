@@ -6,9 +6,6 @@ local invState = GetResourceState('ox_inventory') -- Get the resource state of o
 
 local players = {} -- Table to store players
 
-local dirtycash = false -- Set to false if you want to use regular cash instead of dirty cash
-local metadata = false -- if dirtycash true and this true, then you'll be given 'markedbills' with 'worth' attached to them (works with qb-inventory and all of it's forks (eg. ps-inventory etc.))
-
 -- RegisterCallback: Registers a callback function to be triggered later
 local RegisterCallback = function(name, cb)
     if Framework == 'esx' then ESX.RegisterServerCallback(name, cb)
@@ -94,15 +91,30 @@ end
 -- Export the AddPlayer function
 exports('AddPlayer', AddPlayer)
 
+local Contains = function(table, element)
+    for _, value in pairs(table) do
+        if value == element then
+            return true
+        end
+    end
+    return false
+end
+
 RegisterNetEvent('sd-minesweeper:server:dostuff', function(data)
     local src = source
     if not IsPlayer(src) then print("Player with the ID: " .. src .. " and identifier " .. GetIdentifier(src) .. " tried to run the money event without being in the players table") return end
 
-    if data.goldenBox and data.specialItem then AddItem(src, data.specialItem, 1) end
+    if data.goldenBox and data.specialItem then
+        if Contains(Config.Items, data.specialItem) then
+            AddItem(src, data.specialItem, 1) else print("Player with the ID: " .. src .. " and identifier " .. GetIdentifier(src) .. " attempted to add an invalid item: " .. data.specialItem) return
+        end
+    end
 
-    if dirtycash then
+    if Config.MaxMoney.Enable and data.cashAmount > Config.MaxMoney.Amount then print("Player with the ID: " .. src .. " and identifier " .. GetIdentifier(src) .. " attempted to add money exceeding the limit: " .. data.cashAmount) return end
+
+    if Config.DirtyCash then
         if Framework == 'qb' then
-            if metadata then 
+            if Config.MetaData then 
                 local info = { worth = data.cashAmount }
                 AddItem(src, 'markedbills', 1, false, info)
             else 
